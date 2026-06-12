@@ -1,0 +1,4 @@
+interface:
+  display_name: "Designing Sessions"
+  short_description: "Brainstorm or fully design workshops, talks, and ideation sessions"
+  default_prompt: "Use $designing-sessions to brainstorm directions or create a complete workshop, talk, or ideation plan."

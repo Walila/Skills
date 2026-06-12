@@ -1,4 +1,0 @@
-interface:
-  display_name: "Designing Workshops and Talks"
-  short_description: "Brainstorm or fully design workshops and talks"
-  default_prompt: "Use $designing-workshops-and-talks to brainstorm directions or create a complete workshop, talk, or ideation plan."

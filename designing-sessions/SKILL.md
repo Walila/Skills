@@ -1,9 +1,9 @@
 ---
-name: designing-workshops-and-talks
+name: designing-sessions
 description: Use when designing a workshop, talk, presentation, facilitated ideation session, or mixed speaking-and-activity session, including early brainstorming and complete executable plans.
 ---
 
-# Designing Workshops and Talks
+# Designing Sessions
 
 ## Choose a Mode
 
