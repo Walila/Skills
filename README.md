@@ -24,11 +24,11 @@ Each skill directory is self-contained. Install the whole directory, not only `S
 Clone or download this repository first:
 
 ```bash
-git clone <repo-url> skills
+git clone git@github.com:Walila/Skills.git skills
 cd skills
 ```
 
-Replace `<repo-url>` with the actual repository URL.
+Use the HTTPS URL instead if your environment does not have GitHub SSH access configured.
 
 ### ChatGPT
 
