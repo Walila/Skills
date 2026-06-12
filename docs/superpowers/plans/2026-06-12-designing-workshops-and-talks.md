@@ -4,7 +4,7 @@
 
 **Goal:** Create and verify a reusable skill that turns ideas into confirmed-duration workshops, talks, ideation sessions, mixed formats, or custom deliverables.
 
-**Architecture:** Keep the skill self-contained in one concise `SKILL.md`, with `agents/openai.yaml` for UI metadata. Validate behavior through baseline and forward-test scenarios, then validate structure with the standard skill validator.
+**Architecture:** Keep the skill self-contained in one concise `SKILL.md`, with `agents/openai.yaml` for UI metadata. Support a lightweight Fast Start path and a gated Complete Design path. Validate behavior through baseline and forward-test scenarios, then validate structure with the standard skill validator.
 
 **Tech Stack:** Markdown, YAML, Codex skill-creator scripts, multi-agent evaluation
 
@@ -13,7 +13,7 @@
 ### Task 1: Record Baseline Behavior
 
 **Files:**
-- Create: `designing-workshops-and-talks/evals/baseline.md`
+- Create: `docs/superpowers/evals/designing-workshops-and-talks-baseline.md`
 
 - [ ] **Step 1: Run baseline scenarios without the new skill**
 
@@ -40,7 +40,8 @@ fails to recommend and confirm one duration, or emits multiple duration plans.
 
 - [ ] **Step 2: Document exact failures**
 
-Create `designing-workshops-and-talks/evals/baseline.md` containing:
+Create `docs/superpowers/evals/designing-workshops-and-talks-baseline.md`
+containing:
 
 ```markdown
 # Baseline Evaluation
@@ -127,22 +128,24 @@ description: Use when helping users brainstorm, facilitate ideation, design work
 
 The body must require:
 
-1. Gather all missing context in one batch.
-2. Ask for the desired idea count.
-3. Ask whether AI, participants, or both generate ideas.
-4. Always diverge, cluster, and converge before designing the deliverable.
-5. Recommend clustering and evaluation criteria with reasons, then confirm.
-6. Recommend exactly one of 15, 30, or 60 minutes with reasons, then confirm.
-7. Let the user select multiple deliverable types.
-8. Ask whether multiple types should be integrated or separate.
-9. Output only the confirmed duration.
-10. Include an executable timed agenda, prompts or notes, materials, outputs,
+1. Choose Fast Start for inspiration and Complete Design for executable plans.
+2. Fast Start proceeds with brief assumptions and defaults to 20 ideas.
+3. Complete Design gathers all missing required context in one batch.
+4. Ask whether AI, participants, or both generate ideas.
+5. Always diverge, cluster, and converge before designing the deliverable.
+6. Recommend clustering and evaluation criteria with reasons, then confirm.
+7. Recommend exactly one of 15, 30, or 60 minutes with reasons, then confirm.
+8. Let the user select multiple deliverable types.
+9. Ask whether multiple types should be integrated or separate.
+10. Output only the confirmed duration.
+11. Include an executable timed agenda, prompts or notes, materials, outputs,
     risks, and fallback reductions where applicable.
 
 - [ ] **Step 2: Address observed baseline failures**
 
 Add explicit counters for every failure pattern in
-`designing-workshops-and-talks/evals/baseline.md`. Include a short red-flags
+`docs/superpowers/evals/designing-workshops-and-talks-baseline.md`. Include a
+short red-flags
 section covering skipped phases, assumed idea counts, unconfirmed durations,
 and automatic three-version output.
 
@@ -160,7 +163,7 @@ Expected: Prefer fewer than 500 words; no Chinese characters or placeholders.
 ### Task 4: Forward-Test Behavior
 
 **Files:**
-- Create: `designing-workshops-and-talks/evals/forward-test.md`
+- Create: `docs/superpowers/evals/designing-workshops-and-talks-forward-test.md`
 - Modify if needed: `designing-workshops-and-talks/SKILL.md`
 
 - [ ] **Step 1: Run equivalent scenarios with the skill**
@@ -170,16 +173,18 @@ scenarios.
 
 Expected:
 
-- Missing context is requested in one batch.
-- Idea count and idea source are not assumed.
+- Fast Start does not block on intake and defaults to 20 ideas.
+- Complete Design requests missing required context in one batch.
+- Complete Design defaults the idea count to 20.
 - Divergence, clustering, and convergence are explicit.
-- One duration is recommended with a reason and awaits confirmation.
-- The agent does not output all duration versions.
+- Complete Design recommends one duration and awaits confirmation.
+- Complete Design does not output all duration versions.
 
 - [ ] **Step 2: Record GREEN results**
 
-Create `designing-workshops-and-talks/evals/forward-test.md` containing each
-scenario, observed behavior, pass or fail, and any new loopholes.
+Create `docs/superpowers/evals/designing-workshops-and-talks-forward-test.md`
+containing each scenario, observed behavior, pass or fail, and any new
+loopholes.
 
 - [ ] **Step 3: Refactor and re-test**
 
@@ -222,7 +227,7 @@ contradictions with the approved design.
 Run:
 
 ```bash
-git add designing-workshops-and-talks
+git add designing-workshops-and-talks docs/superpowers
 git commit -m "feat(workshop): add workshop and talk design skill"
 ```
 
