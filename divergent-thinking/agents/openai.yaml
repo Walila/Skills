@@ -1,0 +1,4 @@
+interface:
+  display_name: "Divergent Thinking"
+  short_description: "Break assumptions and explore unexpected directions"
+  default_prompt: "Use $divergent-thinking to break assumptions and explore unexpected directions before choosing or planning."
