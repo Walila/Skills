@@ -28,8 +28,9 @@ high-impact question; otherwise state brief assumptions and continue.
 2. **Select methods.** Read [methods.md](methods.md) completely. Choose 4-7
    methods for surface fit, then check cognitive breadth. Quality outranks
    coverage; do not use every available method.
-3. **Generate 10-15 directions.** Give each selected method one direction
-   before adding variants. No method may produce more than 25% of the set.
+3. **Generate 10-15 directions.** Before adding variants, explore at least two
+   distinct transformation surfaces and give each selected method one
+   direction. No method may produce more than 25% of the set.
 4. **Run the quality check.** Test relevance, conceptual diversity, and
    method-transformation consistency. Replace isolated failures; regenerate
    the set when more than roughly one third fail.
@@ -71,6 +72,8 @@ Regenerate weak directions when:
 - The portfolio becomes ranking, recommendation, or execution planning.
 - Methods are included only to complete the toolbox.
 - Most methods appear exactly once because the toolbox was treated as a quota.
+- Most directions explore the same possibility space despite different methods
+  or surfaces.
 - A method violates its boundary in `methods.md`.
 
 Tier 1 success requires one genuinely surprising and extensible direction plus

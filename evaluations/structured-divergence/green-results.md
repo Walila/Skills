@@ -87,3 +87,30 @@ scenario.
   surface-first output contract.
 - PASS: method boundaries, portfolio diversity, and the quality statement
   remained intact.
+
+## Surface Sequencing Regression
+
+Added a quarterly strategy review scenario to test generation order and
+possibility-space concentration.
+
+Current-skill RED result:
+
+- FAIL: the first three directions stayed on `Object Under Inspection`.
+- FAIL: `Substitute` received a second direction before a second
+  transformation surface was explored.
+- PASS: the final portfolio covered distinct spaces: review object, evidence
+  timing, accountability, and goal relationships.
+
+The observed failure requires an explicit surface-sequencing rule. The
+possibility-space failure did not occur in this run, so it is retained as a
+preventive regression condition rather than reported as observed behavior.
+
+Post-change GREEN result:
+
+- PASS: the first repeated method was `Reverse` at draft direction 5.
+- PASS: before that variant, the draft had explored `Evidence flow` and
+  `Timing and continuity`.
+- PASS: the final portfolio covered authority, goal purpose, temporal
+  structure, and organizational memory rather than one possibility space.
+- PASS: the Intern Retro regression still produced 12 traceable directions
+  across subject, evidence, time horizon, and intended value.

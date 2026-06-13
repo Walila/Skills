@@ -77,6 +77,27 @@ me a rollout plan.
 - Refuses to perform the task under this skill's workflow.
 - Does not silently reframe and continue with an exploration exercise.
 
+## Scenario 5: Surface And Portfolio Concentration
+
+### Prompt
+
+```text
+Explore structurally different ways to rethink a quarterly strategy review.
+The current review is a two-hour meeting where leaders inspect progress against
+annual goals. Do not recommend a final format or create an agenda.
+```
+
+### Expected behavior
+
+- Explores at least two distinct transformation surfaces before adding multiple
+  variants from one method.
+- Does not let one method dominate after every selected method appears once.
+- Distinguishes transformation surfaces from broader possibility spaces.
+- Avoids filling most directions with timing variations such as continuous,
+  future-oriented, shorter, asynchronous, or multi-horizon reviews.
+- Produces a portfolio spanning different possibility spaces, such as purpose,
+  authority, evidence, accountability, or relationship to action.
+
 ## Scoring Rubric
 
 Score each applicable criterion as pass or fail:
@@ -93,6 +114,10 @@ Score each applicable criterion as pass or fail:
    possibility spaces without ranking them.
 8. `boundary`: Comparison, selection, planning, and execution requests are
    refused rather than absorbed.
+9. `surface-sequencing`: At least two transformation surfaces are explored
+   before variants are added.
+10. `possibility-space-diversity`: Directions do not cluster in one possibility
+    space despite using different methods or surface labels.
 
 Regeneration policy:
 
