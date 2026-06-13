@@ -1,0 +1,4 @@
+interface:
+  display_name: "Structured Divergence"
+  short_description: "Explore traceable possibilities through explicit transformations"
+  default_prompt: "Use $structured-divergence to explore method-transparent, structurally different directions without choosing or planning."
