@@ -37,64 +37,149 @@ Use the HTTPS URL instead if your environment does not have GitHub SSH access co
 
 ### ChatGPT
 
-ChatGPT does not use a local skill directory. Use these skills as Custom GPT or Project knowledge:
+ChatGPT on the web does not currently install Agent Skills directories or
+`SKILL.md` packages directly. Use a Custom GPT for the closest reusable
+equivalent:
 
-1. Open ChatGPT.
-2. Create or edit a Custom GPT, or open a Project.
-3. Upload each complete skill folder, including supporting files such as `methods.md`.
-4. Add an instruction telling ChatGPT to follow the relevant skill when the user references its `$skill-name`.
+1. Open **Explore GPTs > Create** in ChatGPT on the web.
+2. Copy the behavioral content from `SKILL.md` into the GPT's
+   **Instructions**.
+3. Upload supporting reference files such as `methods.md` under
+   **Knowledge**.
+4. Test the GPT in Preview, then save it.
 
-Suggested instruction:
+Create a separate GPT for each skill unless you deliberately want one GPT to
+combine all three workflows. GPT creation and editing require a paid plan or
+workspace permission.
 
-```text
-When the user references $divergent-thinking, follow the Divergent Thinking skill.
-When the user references $designing-sessions, follow the Designing Sessions skill.
-When the user references $structured-divergence, follow the Structured Divergence skill.
-```
+A ChatGPT Project can also hold project instructions and uploaded reference
+files, but those instructions apply only inside that project. Uploading
+`SKILL.md` as a project file does not register it as an invocable skill.
+
+Official documentation: [Creating and editing GPTs](https://help.openai.com/en/articles/8554397)
+and [Projects in ChatGPT](https://help.openai.com/en/articles/10169521)
 
 ### Claude Code
 
-Install into the Claude Code user skills directory:
+Claude Code stores its general configuration under `~/.claude/`. The personal
+skills directory is `~/.claude/skills/`; it is normal for this subdirectory not
+to exist until you create your first skill.
+
+On Linux, macOS, or WSL:
 
 ```bash
 mkdir -p ~/.claude/skills
 cp -R divergent-thinking designing-sessions structured-divergence ~/.claude/skills/
 ```
 
-Restart Claude Code, or start a new session, then reference the skills by name.
+On native Windows PowerShell:
+
+```powershell
+New-Item -ItemType Directory -Force "$HOME\.claude\skills"
+Copy-Item -Recurse divergent-thinking, designing-sessions, structured-divergence "$HOME\.claude\skills\"
+```
+
+Claude Code detects changes inside an existing skills directory automatically.
+Restart Claude Code if the top-level `skills` directory was created after the
+session started.
+
+Official documentation: [Claude Code skills](https://code.claude.com/docs/en/skills)
 
 ### Codex
 
-Install into the Codex agent skills directory:
+Codex supports two personal skill locations:
+
+- `~/.codex/skills/`: Codex-native location and the default destination used
+  by its built-in `$skill-installer`.
+- `~/.agents/skills/`: cross-agent location that can also be shared with
+  Cursor.
+
+Use `~/.codex/skills/` when the skills are only for Codex. Use
+`~/.agents/skills/` when you want one installation shared by supporting tools.
+
+On Linux, macOS, or WSL:
 
 ```bash
-mkdir -p ~/.agents/skills
-cp -R divergent-thinking designing-sessions structured-divergence ~/.agents/skills/
+mkdir -p ~/.codex/skills
+cp -R divergent-thinking designing-sessions structured-divergence ~/.codex/skills/
 ```
 
-Restart Codex, or start a new agent session, then reference the skills by name.
+On native Windows PowerShell:
 
-### Claude Code Desktop
-
-If Claude Code Desktop runs in the same environment as Claude Code, use the same directory:
-
-```bash
-mkdir -p ~/.claude/skills
-cp -R divergent-thinking designing-sessions structured-divergence ~/.claude/skills/
+```powershell
+New-Item -ItemType Directory -Force "$HOME\.codex\skills"
+Copy-Item -Recurse divergent-thinking, designing-sessions, structured-divergence "$HOME\.codex\skills\"
 ```
 
-If the desktop app runs outside WSL or a container, run the commands in the host environment where the desktop app reads its user files.
+For project-only installation, copy the directories to `.agents/skills/` in
+the repository instead. Codex detects skill changes automatically; restart it
+only if a new skill does not appear.
+
+Codex can also install the skills directly from GitHub. Ask Codex:
+
+```text
+Use $skill-installer to install these paths from Walila/Skills:
+divergent-thinking, designing-sessions, and structured-divergence.
+```
+
+The built-in installer downloads each directory into `$CODEX_HOME/skills`,
+which defaults to `~/.codex/skills/`.
+
+Official documentation: [Codex Agent Skills](https://developers.openai.com/codex/skills)
+
+### Claude.ai and Claude Desktop
+
+Claude.ai and the Claude Desktop app use account-level skills rather than the
+local `~/.claude/skills/` directory used by Claude Code:
+
+1. Create one ZIP file for each complete skill directory.
+2. Open **Customize > Skills**.
+3. Click **+ > Create skill > Upload a skill**.
+4. Upload the ZIP file and enable the skill.
+
+The same account-level skills are available in supported Claude surfaces. They
+are not installed by copying files into the Desktop application's local data
+directory.
+
+Official documentation: [Use skills in Claude](https://support.claude.com/en/articles/12512180-use-skills-in-claude)
 
 ### Cursor
 
-Install into the Cursor user skills directory:
+Cursor supports both `~/.cursor/skills/` and the cross-agent
+`~/.agents/skills/` directory. If these skills are already installed for Codex
+under `~/.agents/skills/`, Cursor can use the same installation and no second
+copy is needed.
+
+Do not install custom skills into `~/.cursor/skills-cursor/`. Cursor creates
+and updates that directory for its built-in and managed skills.
+
+Cursor-specific installation on Linux, macOS, or WSL:
 
 ```bash
-mkdir -p ~/.cursor/skills-cursor
-cp -R divergent-thinking designing-sessions structured-divergence ~/.cursor/skills-cursor/
+mkdir -p ~/.cursor/skills
+cp -R divergent-thinking designing-sessions structured-divergence ~/.cursor/skills/
 ```
 
-Reload Cursor or start a new chat after installation.
+On native Windows PowerShell:
+
+```powershell
+New-Item -ItemType Directory -Force "$HOME\.cursor\skills"
+Copy-Item -Recurse divergent-thinking, designing-sessions, structured-divergence "$HOME\.cursor\skills\"
+```
+
+On native Windows, `$HOME` normally resolves to
+`C:\Users\<username>`. When Cursor is operating in WSL, install in the Linux
+home directory used by that WSL environment instead.
+
+Cursor also discovers project skills from `.cursor/skills/` or
+`.agents/skills/`. View detected skills under **Cursor Settings > Rules**.
+
+Cursor can import content from GitHub through **Cursor Settings > Rules > Add
+Rule > Remote Rule (GitHub)**. For this repository, which contains multiple
+skills, cloning the repository and copying the three skill directories remains
+the most explicit installation method.
+
+Official documentation: [Cursor Agent Skills](https://cursor.com/docs/skills)
 
 ## Usage
 
